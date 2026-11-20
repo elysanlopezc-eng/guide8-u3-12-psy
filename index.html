@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide 8 - Unit 3: Workplace Dynamics: Integration and Final Portfolio - Colegio Montano</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montano: {
+                            blue: '#1269A8',
+                            yellow: '#F7D615',
+                            teal: '#54887D',
+                            lightblue: '#88B5C7',
+                            olive: '#A6B046',
+                            softwhite: '#F2F5E9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --montano-blue: #1269A8;
+            --montano-yellow: #F7D615;
+            --montano-teal: #54887D;
+            --montano-lightblue: #88B5C7;
+            --montano-olive: #A6B046;
+            --montano-softwhite: #F2F5E9;
+        }
+
+        body {
+            background-color: #E2E8F0;
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+            color: #2D3748;
+        }
+
+        /* Digital Whiteboard Container */
+        .whiteboard-frame {
+            background-color: var(--montano-softwhite);
+            border: 12px solid #CBD5E1;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn {
+            transition: all 0.25s ease-in-out;
+            border-bottom: 4px solid transparent;
+        }
+
+        .tab-btn.active {
+            background-color: #FFFFFF;
+            color: var(--montano-blue);
+            border-bottom-color: var(--montano-yellow);
+            font-weight: 800;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .card-montano {
+            border-left: 5px solid var(--montano-blue);
+            background: #FFFFFF;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-montano:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+        }
+
+        .audio-btn {
+            transition: all 0.2s ease;
+        }
+        .audio-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E2E8F0;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--montano-lightblue);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--montano-blue);
+        }
+    </style>
+</head>
+<body class="p-2 md:p-6 min-h-screen">
+
+    <!-- MAIN WHITEBOARD CONTAINER -->
+    <div id="whiteboardContainer" class="whiteboard-frame max-w-7xl mx-auto p-4 md:p-8 relative min-h-[90vh] flex flex-col justify-between">
+        
+        <!-- HEADER SECTION -->
+        <header class="border-b-2 border-slate-300 pb-4 mb-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" 
+                         alt="Colegio Montano Logo" 
+                         class="h-16 w-auto object-contain bg-white p-1 rounded-lg shadow-sm"
+                         onerror="this.src='https://placehold.co/150x60/1269A8/FFFFFF?text=Colegio+Montano'">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-montano-yellow text-slate-900 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                Guide 8 — Unit 3 (Final)
+                            </span>
+                            <span class="bg-montano-lightblue text-white text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                12th Mercadotecnia | ESL B2-C1
+                            </span>
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-montano-blue tracking-tight mt-1">
+                            Workplace Dynamics: Integration and Final Portfolio
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Header Actions & Controls -->
+                <div class="flex items-center gap-3 self-end md:self-center">
+                    <button onclick="toggleFullscreen()" title="Toggle Fullscreen"
+                            class="flex items-center gap-2 bg-montano-blue text-white px-4 py-2 rounded-xl text-sm font-bold shadow hover:bg-opacity-90 active:scale-95 transition">
+                        <i class="fa-solid font-bold fa-expand" id="fullscreenIcon"></i>
+                        <span class="hidden sm:inline">Fullscreen</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- NAVIGATION TABS -->
+            <nav class="flex overflow-x-auto gap-2 mt-6 border-b border-slate-200 no-scrollbar">
+                <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn active px-5 py-3 text-sm md:text-base font-bold whitespace-nowrap rounded-t-xl text-slate-600 flex items-center gap-2">
+                    <i class="fa-solid fa-network-wired text-montano-blue"></i> 1. Concept Map & Integration
+                </button>
+                <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-5 py-3 text-sm md:text-base font-bold whitespace-nowrap rounded-t-xl text-slate-600 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-montano-teal"></i> 2. Solved Examples (15)
+                </button>
+                <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-5 py-3 text-sm md:text-base font-bold whitespace-nowrap rounded-t-xl text-slate-600 flex items-center gap-2">
+                    <i class="fa-solid fa-microphone text-montano-yellow"></i> 3. Live Voice Simulator
+                </button>
+                <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-5 py-3 text-sm md:text-base font-bold whitespace-nowrap rounded-t-xl text-slate-600 flex items-center gap-2">
+                    <i class="fa-solid fa-comments text-montano-lightblue"></i> 4. Critical Reflection
+                </button>
+                <button onclick="switchTab(5)" id="tab-btn-5" class="tab-btn px-5 py-3 text-sm md:text-base font-bold whitespace-nowrap rounded-t-xl text-slate-600 flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-question text-montano-olive"></i> 5. Formative Evaluation (15)
+                </button>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1">
+
+            <!-- TAB 1: THEORY & GRAMMAR -->
+            <div id="tab-1" class="tab-content space-y-6">
+                <!-- Warm-Up Prompt -->
+                <div class="bg-gradient-to-r from-montano-blue to-montano-teal text-white p-6 rounded-2xl shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-white/10 rounded-xl text-montano-yellow text-2xl">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold uppercase tracking-wide text-montano-yellow">Retrieval Challenge & Master Synthesis</h2>
+                            <p class="text-lg font-semibold mt-1">"How do emotional intelligence, I/O psychology, performance evaluation, talent development, motivation, conflict resolution, and business ethics unite to form a high-performing marketing department?"</p>
+                            <p class="text-sm text-slate-100 mt-2">
+                                In this final unit, all prior themes converge. An exceptional marketing leader does not apply these concepts in isolation. Instead, they synthesize emotional intelligence with I/O psychology frameworks, evaluate performance fairly, develop talent continuously, foster intrinsic motivation, resolve conflicts collaboratively, and lead with unwavering ethical integrity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Core Pillars Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Pillar 1 -->
+                    <div class="card-montano p-5 rounded-xl border-l-montano-blue shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-full bg-montano-blue/10 text-montano-blue flex items-center justify-center font-bold text-lg">1</span>
+                            <h3 class="text-lg font-bold text-slate-800">Foundational Synergy: EQ & I/O Psychology</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-3">Combining self-awareness and empathy with organizational culture design to foster psychological safety and role clarity across creative teams.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <span class="text-xs font-bold text-montano-blue uppercase block mb-1">Integrated Impact:</span>
+                            <p class="text-xs text-slate-700 italic">High EQ leadership shapes a positive organizational climate, driving employee well-being and reducing burnout.</p>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-xs font-semibold text-slate-500">Synergy Index:</span>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5 mt-1">
+                                <div class="bg-montano-blue h-2.5 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="card-montano p-5 rounded-xl border-l-montano-teal shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-full bg-montano-teal/10 text-montano-teal flex items-center justify-center font-bold text-lg">2</span>
+                            <h3 class="text-lg font-bold text-slate-800">Performance, Talent & Motivation Alignment</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-3">Connecting objective KPI evaluations, targeted training needs assessments (TNA), and intrinsic/extrinsic motivation frameworks into a unified growth engine.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <span class="text-xs font-bold text-montano-teal uppercase block mb-1">Integrated Impact:</span>
+                            <p class="text-xs text-slate-700 italic">Performance reviews identify training needs, which in turn fuel employee motivation and career advancement.</p>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-xs font-semibold text-slate-500">Alignment Meter:</span>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5 mt-1">
+                                <div class="bg-montano-teal h-2.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="card-montano p-5 rounded-xl border-l-montano-olive shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-full bg-montano-olive/10 text-montano-olive flex items-center justify-center font-bold text-lg">3</span>
+                            <h3 class="text-lg font-bold text-slate-800">Conflict Resolution & Professional Communication</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-3">Utilizing active listening, assertive communication, and collaborative handling modes (Thomas-Kilmann) to resolve cross-functional team disputes.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <span class="text-xs font-bold text-montano-olive uppercase block mb-1">Integrated Impact:</span>
+                            <p class="text-xs text-slate-700 italic">Transforming marketing vs. sales friction into collaborative synergies through principled negotiation.</p>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-xs font-semibold text-slate-500">Resolution Effectiveness:</span>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5 mt-1">
+                                <div class="bg-montano-olive h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 4 -->
+                    <div class="card-montano p-5 rounded-xl border-l-montano-lightblue shadow-sm">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-full bg-montano-lightblue/10 text-montano-lightblue flex items-center justify-center font-bold text-lg">4</span>
+                            <h3 class="text-lg font-bold text-slate-800">Business Ethics & Transformational Leadership</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-3">Anchoring all corporate decisions in moral integrity, transparency, accountability, and servant leadership.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <span class="text-xs font-bold text-montano-lightblue uppercase block mb-1">Integrated Impact:</span>
+                            <p class="text-xs text-slate-700 italic">Ethical leadership ensures that profitability never supersedes consumer trust and corporate morality.</p>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-xs font-semibold text-slate-500">Leadership Integrity Index:</span>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5 mt-1">
+                                <div class="bg-montano-lightblue h-2.5 rounded-full" style="width: 96%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ESL Language & Grammar Toolkit (B2-C1) -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-lg font-bold text-montano-blue mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-language"></i> Advanced ESL Academic Structures for Final Synthesis
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 border-b pb-1 mb-2">Holistic Integration Framing</h4>
+                            <p class="text-xs text-slate-600 mb-2">Connecting multiple organizational dimensions.</p>
+                            <p class="text-xs font-mono text-montano-blue">"By synthesizing emotional intelligence with robust performance metrics, leaders foster sustainable engagement."</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 border-b pb-1 mb-2">Counterfactual Policy Analysis</h4>
+                            <p class="text-xs text-slate-600 mb-2">Evaluating organizational systems retrospectively.</p>
+                            <p class="text-xs font-mono text-montano-blue">"Had ethical leadership and structured conflict resolution been prioritized earlier, team turnover would have been averted."</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 border-b pb-1 mb-2">Strategic Recommendation Modals</h4>
+                            <p class="text-xs text-slate-600 mb-2">Proposing comprehensive departmental overhauls.</p>
+                            <p class="text-xs font-mono text-montano-blue">"The marketing division ought to integrate continuous appraisal with targeted talent development."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: SOLVED EXAMPLES (15 EXAMPLES) -->
+            <div id="tab-2" class="tab-content hidden space-y-6">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-lg font-bold text-montano-blue">15 Solved Integrated Case Examples</h2>
+                        <p class="text-xs text-slate-500">Synthesizing EQ, I/O psychology, performance, training, motivation, conflict, and ethics. Click speaker icon for Text-To-Speech.</p>
+                    </div>
+                    <span class="bg-montano-blue text-white text-xs font-bold px-3 py-1 rounded-full">5 Basic | 5 Inter. | 5 Adv.</span>
+                </div>
+
+                <div id="examplesContainer" class="space-y-4">
+                    <!-- Dynamically populated via JS -->
+                </div>
+            </div>
+
+            <!-- TAB 3: LIVE VOICE SIMULATOR & DASHBOARD -->
+            <div id="tab-3" class="tab-content hidden space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Simulator Interactive Panel -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b pb-4 mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full bg-montano-blue text-white flex items-center justify-center font-bold text-xl">
+                                        <i class="fa-solid fa-briefcase"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-800">Integrated Departmental Turnaround Simulator</h3>
+                                        <p class="text-xs text-slate-500">Scenario: Pitching a comprehensive workplace turnaround strategy to executive board members.</p>
+                                    </div>
+                                </div>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live Simulation
+                                </span>
+                            </div>
+
+                            <!-- Simulation Dialogue Box -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 space-y-3 max-h-60 overflow-y-auto" id="dialogueBox">
+                                <div class="flex gap-3">
+                                    <div class="font-bold text-xs text-montano-blue w-28 shrink-0">Executive Board:</div>
+                                    <div class="text-sm text-slate-700 bg-white p-2.5 rounded-lg border border-slate-200 shadow-2xs">
+                                        "Our marketing division suffers from low morale, unresolved conflicts, ethical lapses in advertising, and poor performance tracking. Present your integrated turnaround portfolio strategy."
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- User Response Input Section -->
+                            <div class="space-y-3">
+                                <label class="block text-xs font-bold text-slate-700 uppercase">Your Holistic Portfolio Response:</label>
+                                <textarea id="speechInput" rows="3" 
+                                          class="w-full p-3 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-montano-blue focus:outline-none"
+                                          placeholder="Speak using microphone or type your comprehensive strategy integrating EQ, I/O principles, KPIs, training, motivation, conflict resolution, and ethics..."></textarea>
+                                
+                                <div class="flex flex-wrap gap-3 items-center justify-between">
+                                    <button onclick="toggleSpeechRecognition()" id="micBtn"
+                                            class="bg-montano-yellow text-slate-900 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 hover:bg-yellow-400 transition shadow-sm">
+                                        <i class="fa-solid fa-microphone" id="micIcon"></i> <span id="micText">Start Speaking</span>
+                                    </button>
+
+                                    <div class="flex gap-2">
+                                        <button onclick="clearSimInput()" class="px-3 py-2 text-xs font-bold text-slate-500 hover:text-slate-700">Clear</button>
+                                        <button onclick="evaluateResponse()" class="bg-montano-blue text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-opacity-90 transition shadow-sm">
+                                            Evaluate Final Portfolio
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sample Prompts -->
+                        <div class="mt-6 pt-4 border-t border-slate-100">
+                            <span class="text-xs font-bold text-slate-400 block mb-2">Try saying/typing:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="insertSamplePrompt(1)" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200">
+                                    "We propose a holistic strategy combining emotional intelligence, objective KPIs, targeted talent development, intrinsic motivation, collaborative conflict resolution, and unwavering business ethics."
+                                </button>
+                                <button onclick="insertSamplePrompt(2)" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200">
+                                    "Just fire half the team and force everyone to work harder."
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Performance Dashboard -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-bold text-slate-800 border-b pb-2 mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-chart-line text-montano-teal"></i> Live Performance Dashboard
+                            </h3>
+
+                            <!-- Score Metrics -->
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1">
+                                        <span>Pronunciation & Speech Clarity</span>
+                                        <span id="scorePronunciation" class="text-montano-blue">0%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-full h-2">
+                                        <div id="barPronunciation" class="bg-montano-blue h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1">
+                                        <span>Holistic Synthesis & Academic Accuracy</span>
+                                        <span id="scoreGrammar" class="text-montano-teal">0%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-full h-2">
+                                        <div id="barGrammar" class="bg-montano-teal h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1">
+                                        <span>Executive Etiquette & Professionalism</span>
+                                        <span id="scorePoliteness" class="text-montano-olive">0%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-full h-2">
+                                        <div id="barPoliteness" class="bg-montano-olive h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Keywords Detected -->
+                            <div class="mt-5">
+                                <span class="text-xs font-bold text-slate-500 uppercase block mb-2">Detected Integration Keywords:</span>
+                                <div id="keywordsContainer" class="flex flex-wrap gap-1.5 min-h-[32px] p-2 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-400">
+                                    No keywords detected yet...
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Feedback Box -->
+                        <div class="bg-montano-softwhite p-4 rounded-xl border border-montano-lightblue/30 mt-4">
+                            <span class="text-xs font-bold text-montano-blue flex items-center gap-1.5 mb-1">
+                                <i class="fa-solid fa-robot"></i> AI Pedagogical Feedback:
+                            </span>
+                            <p id="aiFeedback" class="text-xs text-slate-700 italic">
+                                Submit your final portfolio presentation to receive automated feedback on your holistic integration of unit concepts.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 4: CRITICAL REFLECTION QUESTIONS -->
+            <div id="tab-4" class="tab-content hidden space-y-6">
+                <div class="bg-white p-6 rounded-xl border border-slate-200">
+                    <h2 class="text-xl font-bold text-montano-blue mb-2">Critical Reflection & Final Portfolio Application</h2>
+                    <p class="text-sm text-slate-600 mb-6">Synthesize all eight units of Unit 3. Address the comprehensive workplace case studies below, demonstrating mastery across emotional intelligence, I/O psychology, performance, training, motivation, conflict, and ethics.</p>
+
+                    <div class="space-y-6">
+                        <!-- Question 1 -->
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                            <label class="block font-bold text-slate-800 text-sm">
+                                1. Integrated Case Study: Turning Around "Vanguard Marketing"
+                            </label>
+                            <p class="text-xs text-slate-600">Vanguard Marketing is plagued by cross-departmental friction between sales and creative teams, high turnover, misleading ad campaigns, and subjective performance reviews. Outline a 5-step portfolio intervention plan integrating EQ, I/O culture, KPIs, training, and ethics.</p>
+                            <textarea rows="3" class="w-full p-3 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-montano-blue focus:outline-none" placeholder="Detail your comprehensive 5-step turnaround portfolio strategy..."></textarea>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                            <label class="block font-bold text-slate-800 text-sm">
+                                2. Strategic Reflection: The Interdependence of Motivation and Ethics
+                            </label>
+                            <p class="text-xs text-slate-600">Explain why motivating employees with purely extrinsic sales bonuses without ethical guardrails inevitably leads to organizational failure. Cite motivation theories and business ethics principles.</p>
+                            <textarea rows="3" class="w-full p-3 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-montano-blue focus:outline-none" placeholder="Analyze the interdependence of intrinsic motivation, ethical leadership, and long-term brand ROI..."></textarea>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                            <label class="block font-bold text-slate-800 text-sm">
+                                3. Final Portfolio Task: Practical Solution for a Fictional Marketing Department
+                            </label>
+                            <p class="text-xs text-slate-600">Design a final executive summary for a fictional marketing department outlining how leadership will maintain psychological safety, fair KPIs, continuous training, collaborative conflict resolution, and moral integrity.</p>
+                            <textarea rows="3" class="w-full p-3 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-montano-blue focus:outline-none" placeholder="Draft your final executive summary demonstrating complete mastery of Unit 3 concepts..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: FORMATIVE EVALUATION (15 PROBLEMS) -->
+            <div id="tab-5" class="tab-content hidden space-y-6">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-lg font-bold text-montano-blue">15 Formative Evaluation Exercises (Final Master Exam)</h2>
+                        <p class="text-xs text-slate-500">Comprehensive questions synthesizing all Unit 3 topics. Toggle solutions for step-by-step academic explanations.</p>
+                    </div>
+                    <span class="bg-montano-teal text-white text-xs font-bold px-3 py-1 rounded-full">Mastery Evaluation</span>
+                </div>
+
+                <div id="evaluationContainer" class="space-y-4">
+                    <!-- Dynamically populated via JS -->
+                </div>
+            </div>
+
+        </main>
+
+        <!-- FOOTER SECTION -->
+        <footer class="mt-8 pt-4 border-t border-slate-300 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+            <div>
+                © 2026 <strong>Colegio Montano</strong> — Interactive Study Guide Series (Unit 3 Complete)
+            </div>
+            <div class="flex items-center gap-4">
+                <span>Subject: Marketing / Workplace Dynamics Portfolio</span>
+                <span>Level: 12th Mercadotecnia</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // SOLVED EXAMPLES DATA (15 Items: 5 Basic, 5 Intermediate, 5 Advanced)
+        const solvedExamples = [
+            // Level 1: Basic (1-5)
+            { id: 1, level: "Basic", title: "Synthesizing EQ and I/O Culture", context: "Connecting self-awareness to agency workplace climate.", response: "Emotional intelligence provides individual self-awareness and empathy, which serves as the behavioral foundation for designing a healthy I/O organizational culture.", focus: "EQ & I/O Synergy" },
+            { id: 2, level: "Basic", title: "Connecting Performance Appraisals to Training Needs", context: "Using KPI reviews to drive professional development.", response: "Objective performance evaluations pinpoint exact skill gaps, directly informing Training Needs Assessments (TNA) for targeted upskilling.", focus: "Performance & Training" },
+            { id: 3, level: "Basic", title: "Integrating Motivation and Recognition", context: "Fostering employee engagement in sales teams.", response: "Combining intrinsic task autonomy with structured extrinsic recognition programs maximizes both daily productivity and long-term retention.", focus: "Motivation" },
+            { id: 4, level: "Basic", title: "Resolving Interdepartmental Friction", context: "Mediating disputes between marketing and sales.", response: "Applying active listening, assertive 'I' statements, and principled negotiation transforms departmental conflict into collaborative synergy.", focus: "Conflict Resolution" },
+            { id: 5, level: "Basic", title: "Anchoring Leadership in Business Ethics", context: "Ensuring marketing campaigns remain honest and transparent.", response: "Transformational and servant leadership ensures that profitability and commercial goals never compromise moral integrity or consumer trust.", focus: "Business Ethics" },
+
+            // Level 2: Intermediate (6-10)
+            { id: 6, level: "Intermediate", title: "Designing a Holistic Turnaround Strategy", context: "Revitalizing a dysfunctional marketing agency.", response: "A comprehensive turnaround strategy integrates EQ leadership, objective OKRs, continuous coaching, collaborative conflict resolution, and strict ethical standards.", focus: "Turnaround Strategy" },
+            { id: 7, level: "Intermediate", title: "Balancing KPIs with Psychological Safety", context: "Tracking performance without inducing chronic burnout.", response: "Establishing rigorous KPIs must be coupled with psychological safety, ensuring employees feel safe reporting challenges without fear of punitive measures.", focus: "KPIs & Safety" },
+            { id: 8, level: "Intermediate", title: "Aligning Talent Development with Succession Planning", context: "Preparing middle managers for executive roles.", response: "Integrating continuous mentoring, leadership workshops, and multi-rater appraisals builds a robust internal talent pipeline for executive succession.", focus: "Talent Succession" },
+            { id: 9, level: "Intermediate", title: "Evaluating Training ROI via Kirkpatrick's Model", context: "Proving financial return on marketing training programs.", response: "Evaluating training across reaction, learning, behavior, and results ensures that educational investments directly drive revenue and brand equity.", focus: "Training Evaluation" },
+            { id: 10, level: "Intermediate", title: "Mitigating Ethical Risks in Aggressive Sales Quotas", context: "Preventing deceptive closing practices under pressure.", response: "Pairing quantitative revenue quotas with ethical compliance KPIs prevents short-term gains from destroying long-term customer lifetime value.", focus: "Ethical Quotas" },
+
+            // Level 3: Advanced (11-15)
+            { id: 11, level: "Advanced", title: "Executing an Integrated Departmental Portfolio Audit", context: "Conducting a comprehensive audit of all Unit 3 organizational pillars.", response: "A complete portfolio audit evaluates: 1) EQ climate, 2) I/O job design, 3) Appraisal fairness, 4) TNA rigor, 5) Motivational alignment, 6) Conflict protocols, and 7) Ethical governance.", focus: "Portfolio Audit" },
+            { id: 12, level: "Advanced", title: "Analyzing the Ripple Effect of Leadership Failure on Culture", context: "How an unethical executive destroys department morale and trust.", response: "An unethical executive triggers systemic distrust, rampant role ambiguity, defensive conflict avoidance, and catastrophic voluntary turnover across all teams.", advanced: true, focus: "Leadership Impact" },
+            { id: 13, level: "Advanced", title: "Structuring a Cross-Functional Collaborative Ecosystem", context: "Unifying marketing, sales, and creative departments into a single unit.", response: "Establishing shared OKRs, cross-departmental workshops, joint recognition programs, and multi-functional mentoring eliminates silos and fosters synergy.", focus: "Ecosystem Integration" },
+            { id: 14, level: "Advanced", title: "Managing Resistance to Organizational Change", context: "Transitioning a traditional agency to modern agile marketing methods.", response: "Applying Lewin's change model, transparent communication, empathetic listening, and participatory training ensures smooth adoption and high engagement.", focus: "Change Management" },
+            { id: 15, level: "Advanced", title: "Presenting the Final Executive Portfolio Summary", context: "Summarizing Unit 3 mastery for executive board review.", response: "The final portfolio demonstrates that sustainable commercial success is achieved exclusively through the harmonious integration of emotional intelligence, scientific I/O psychology, fair evaluation, talent development, intrinsic motivation, collaborative conflict resolution, and unwavering ethical leadership.", focus: "Final Synthesis" }
+        ];
+
+        // FORMATIVE EVALUATION DATA (15 Problems)
+        const evaluationExercises = [
+            // Level 1: Basic (1-5)
+            { id: 1, level: "Basic", question: "How do emotional intelligence and I/O psychology mutually reinforce workplace effectiveness?", solution: "EQ provides individual self-awareness and empathy, while I/O psychology provides structural frameworks for optimizing organizational culture and job design." },
+            { id: 2, level: "Basic", question: "Why must employee performance evaluation data be directly linked to talent development plans?", solution: "Performance appraisals identify specific competency gaps, enabling HR to design targeted training and coaching interventions that foster professional growth." },
+            { id: 3, level: "Basic", question: "Explain the relationship between intrinsic motivation and employee engagement in creative marketing roles.", solution: "Intrinsic motivation (purpose, mastery, autonomy) fuels deep emotional commitment, which manifests as high employee engagement and campaign originality." },
+            { id: 4, level: "Basic", question: "State how active listening and assertive communication resolve cross-departmental conflict.", solution: "Active listening validates diverse perspectives, while assertive 'I' statements express personal boundaries without provoking defensiveness, enabling collaborative problem-solving." },
+            { id: 5, level: "Basic", question: "Why is business ethics considered the foundational baseline for all corporate leadership decisions?", solution: "Legality is merely a minimum standard; business ethics ensures integrity, trust, and moral accountability protect stakeholders and brand equity long-term." },
+
+            // Level 2: Intermediate (6-10)
+            { id: 6, level: "Intermediate", question: "Design an integrated strategy to reduce burnout and turnover in an overworked marketing agency.", solution: "1) Audit workloads (I/O). 2) Train leaders in EQ and empathy. 3) Implement continuous feedback. 4) Provide career growth pathways. 5) Enforce ethical boundaries." },
+            { id: 7, level: "Intermediate", question: "How do objective KPIs prevent managerial bias during performance appraisals?", solution: "Quantifiable metrics replace subjective personal impressions with concrete performance data, eliminating halo and leniency biases." },
+            { id: 8, level: "Intermediate", question: "Analyze why offering purely financial incentives without intrinsic motivation fails to sustain high performance.", solution: "Extrinsic rewards alone create transactional compliance; true engagement requires intrinsic purpose, autonomy, and supportive organizational culture." },
+            { id: 9, level: "Intermediate", question: "Describe how Kirkpatrick's evaluation model ensures training budgets deliver tangible organizational value.", solution: "By measuring reaction, learning, behavior change, and financial ROI, Kirkpatrick's model proves that training directly drives business results." },
+            { id: 10, level: "Intermediate", question: "What role does psychological safety play when resolving conflicts in creative brainstorming sessions?", solution: "Psychological safety ensures team members can voice dissenting or unconventional ideas without fear of ridicule, turning conflict into creative innovation." },
+
+            // Level 3: Advanced (11-15)
+            { id: 11, level: "Advanced", question: "Construct a comprehensive 5-step portfolio intervention plan for a failing marketing division.", solution: "1) Conduct a cultural and TNA audit. 2) Train leadership in EQ and servant leadership. 3) Establish objective OKRs and continuous feedback. 4) Implement collaborative conflict protocols. 5) Enforce strict ethical advertising codes." },
+            { id: 12, level: "Advanced", question: "Evaluate the systemic consequences when an organization separates its ethics policies from its daily sales motivation structures.", solution: "When ethics and sales quotas are disconnected, employees may utilize deceptive practices to achieve financial targets, causing catastrophic brand and legal damage." },
+            { id: 13, level: "Advanced", question: "Formulate an executive presentation response addressing low morale, high turnover, and poor campaign performance.", solution: "'Our turnaround strategy addresses systemic root causes: we are aligning objective KPIs with psychological safety, investing in targeted talent development, and anchoring all operations in unwavering ethical integrity.'" },
+            { id: 14, level: "Advanced", question: "How can an organization measure the holistic success of its integrated workplace dynamics program?", solution: "Track multi-year metrics across voluntary turnover rates, customer satisfaction scores, ROI on training, employee pulse engagement indices, and audit compliance." },
+            { id: 15, level: "Advanced", question: "Synthesize all eight units of Unit 3 into a single unified philosophy of modern educational and corporate leadership.", solution: "Modern leadership achieves sustainable excellence by harmonizing emotional intelligence, scientific organizational psychology, objective performance standards, continuous talent development, intrinsic motivation, collaborative conflict resolution, and absolute business ethics." }
+        ];
+
+        // INITIALIZATION
+        window.onload = function() {
+            renderSolvedExamples();
+            renderFormativeEvaluation();
+        };
+
+        // TAB SWITCHING LOGIC
+        function switchTab(tabIndex) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(`tab-${tabIndex}`).classList.remove('hidden');
+            document.getElementById(`tab-btn-${tabIndex}`).classList.add('active');
+        }
+
+        // FULLSCREEN TOGGLE
+        function toggleFullscreen() {
+            const container = document.getElementById('whiteboardContainer');
+            const icon = document.getElementById('fullscreenIcon');
+
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                }
+                icon.classList.remove('fa-expand');
+                icon.classList.add('fa-compress');
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                icon.classList.remove('fa-compress');
+                icon.classList.add('fa-expand');
+            }
+        }
+
+        // TEXT TO SPEECH (TTS)
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.95;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Text-to-speech is not supported in your browser.");
+            }
+        }
+
+        // RENDER SOLVED EXAMPLES
+        function renderSolvedExamples() {
+            const container = document.getElementById('examplesContainer');
+            container.innerHTML = solvedExamples.map(ex => {
+                let badgeColor = ex.level === 'Basic' ? 'bg-montano-blue' : (ex.level === 'Intermediate' ? 'bg-montano-teal' : 'bg-montano-olive');
+                return `
+                    <div class="card-montano p-4 rounded-xl border border-slate-200 shadow-2xs">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-100 pb-2 mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="${badgeColor} text-white text-xs font-bold px-2.5 py-0.5 rounded-full">Level ${ex.id <= 5 ? 1 : (ex.id <= 10 ? 2 : 3)}: ${ex.level}</span>
+                                <h3 class="font-bold text-slate-800 text-sm md:text-base">${ex.id}. ${ex.title}</h3>
+                            </div>
+                            <span class="text-xs font-bold text-slate-400">Focus: ${ex.focus}</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-2"><strong>Context:</strong> ${ex.context}</p>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 flex items-start justify-between gap-3">
+                            <p class="text-xs md:text-sm text-slate-700 italic font-medium">"${ex.response}"</p>
+                            <button onclick="speakText('${ex.response.replace(/'/g, "\\'")}')" class="audio-btn text-montano-blue hover:text-montano-teal p-1.5 bg-white rounded-full shadow-2xs shrink-0" title="Listen to audio">
+                                <i class="fa-solid fa-volume-high text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // RENDER FORMATIVE EVALUATION
+        function renderFormativeEvaluation() {
+            const container = document.getElementById('evaluationContainer');
+            container.innerHTML = evaluationExercises.map(ex => {
+                let badgeColor = ex.level === 'Basic' ? 'bg-montano-blue' : (ex.level === 'Intermediate' ? 'bg-montano-teal' : 'bg-montano-olive');
+                return `
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="${badgeColor} text-white text-xs font-bold px-2.5 py-0.5 rounded-full">Exercise ${ex.id} (${ex.level})</span>
+                            <button onclick="toggleSolution(${ex.id})" class="text-xs font-bold text-montano-blue hover:text-montano-teal border border-montano-blue/30 px-3 py-1 rounded-lg transition">
+                                <i class="fa-solid fa-eye" id="solIcon-${ex.id}"></i> <span id="solBtnText-${ex.id}">Show Solution</span>
+                            </button>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-800">${ex.question}</p>
+                        <div id="solutionBox-${ex.id}" class="hidden bg-montano-softwhite p-3 rounded-lg border border-montano-lightblue/40 text-xs text-slate-700">
+                            <strong class="text-montano-blue block mb-1">Step-by-Step Academic Explanation:</strong>
+                            ${ex.solution}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleSolution(id) {
+            const box = document.getElementById(`solutionBox-${id}`);
+            const btnText = document.getElementById(`solBtnText-${id}`);
+            const icon = document.getElementById(`solIcon-${id}`);
+
+            if (box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                btnText.innerText = "Hide Solution";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                box.classList.add('hidden');
+                btnText.innerText = "Show Solution";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // SPEECH RECOGNITION
+        let recognition = null;
+        let isListening = false;
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('speechInput').value = transcript;
+                stopSpeech();
+            };
+
+            recognition.onerror = function() {
+                stopSpeech();
+            };
+
+            recognition.onend = function() {
+                stopSpeech();
+            };
+        }
+
+        function toggleSpeechRecognition() {
+            if (!recognition) {
+                alert("Web Speech API recognition is not supported in this browser. Please type your response.");
+                return;
+            }
+
+            if (!isListening) {
+                try {
+                    recognition.start();
+                    isListening = true;
+                    document.getElementById('micBtn').classList.replace('bg-montano-yellow', 'bg-red-500');
+                    document.getElementById('micBtn').classList.add('text-white');
+                    document.getElementById('micText').innerText = "Listening...";
+                    document.getElementById('micIcon').classList.add('animate-ping');
+                } catch (e) {
+                    console.error(e);
+                }
+            } else {
+                stopSpeech();
+            }
+        }
+
+        function stopSpeech() {
+            if (recognition && isListening) {
+                recognition.stop();
+            }
+            isListening = false;
+            const micBtn = document.getElementById('micBtn');
+            if (micBtn) {
+                micBtn.classList.replace('bg-red-500', 'bg-montano-yellow');
+                micBtn.classList.remove('text-white');
+                document.getElementById('micText').innerText = "Start Speaking";
+                document.getElementById('micIcon').classList.remove('animate-ping');
+            }
+        }
+
+        function clearSimInput() {
+            document.getElementById('speechInput').value = '';
+        }
+
+        function insertSamplePrompt(type) {
+            const input = document.getElementById('speechInput');
+            if (type === 1) {
+                input.value = "We propose a holistic strategy combining emotional intelligence, objective KPIs, targeted talent development, intrinsic motivation, collaborative conflict resolution, and unwavering business ethics.";
+            } else {
+                input.value = "Just fire half the team and force everyone to work harder.";
+            }
+        }
+
+        // SIMULATOR ANALYSIS ENGINE
+        function evaluateResponse() {
+            const input = document.getElementById('speechInput').value.trim();
+            if (!input) {
+                alert("Please speak or type a response first.");
+                return;
+            }
+
+            const lower = input.toLowerCase();
+
+            // Integration Key terms detection
+            const keywords = ['holistic', 'strategy', 'emotional', 'intelligence', 'kpi', 'talent', 'development', 'motivation', 'conflict', 'resolution', 'ethics', 'leadership', 'integration', 'culture'];
+            const detected = keywords.filter(word => lower.includes(word));
+
+            const keywordsContainer = document.getElementById('keywordsContainer');
+            if (detected.length > 0) {
+                keywordsContainer.innerHTML = detected.map(w => `<span class="bg-montano-lightblue/20 text-montano-blue font-bold px-2 py-0.5 rounded">${w}</span>`).join(' ');
+            } else {
+                keywordsContainer.innerHTML = `<span class="text-red-400">No integration terminology detected</span>`;
+            }
+
+            // Simple Scoring Heuristics
+            let politenessScore = 50;
+            let grammarScore = 40;
+            let pronunciationScore = input.length > 20 ? 88 : 60;
+
+            if (lower.includes('holistic') || lower.includes('strategy') || lower.includes('integration') || lower.includes('ethics')) grammarScore += 35;
+            if (lower.includes('propose') || lower.includes('we suggest') || lower.includes('combine') || lower.includes('executive')) politenessScore += 35;
+
+            if (lower.includes('fire half') || lower.includes('work harder') || lower.includes('punish')) {
+                politenessScore = 20;
+                grammarScore -= 20;
+            }
+
+            if (input.length > 35) grammarScore += 15;
+
+            politenessScore = Math.min(politenessScore, 100);
+            grammarScore = Math.min(grammarScore, 100);
+
+            // Update UI Bars
+            document.getElementById('scorePronunciation').innerText = `${pronunciationScore}%`;
+            document.getElementById('barPronunciation').style.width = `${pronunciationScore}%`;
+
+            document.getElementById('scoreGrammar').innerText = `${grammarScore}%`;
+            document.getElementById('barGrammar').style.width = `${grammarScore}%`;
+
+            document.getElementById('scorePoliteness').innerText = `${politenessScore}%`;
+            document.getElementById('barPoliteness').style.width = `${politenessScore}%`;
+
+            // Feedback Generation
+            const feedbackEl = document.getElementById('aiFeedback');
+            let feedbackMsg = "";
+
+            if (grammarScore >= 75 && politenessScore >= 70) {
+                feedbackMsg = "<strong>Masterclass Portfolio Presentation!</strong> You successfully integrated emotional intelligence, I/O psychology, KPIs, training, motivation, conflict resolution, and business ethics into a unified executive strategy.";
+            } else if (grammarScore >= 50) {
+                feedbackMsg = "<strong>Good Synthesis:</strong> You captured several key concepts, but incorporating terms like 'holistic integration', 'turnaround strategy', or 'ethical leadership' will elevate your portfolio score.";
+            } else {
+                feedbackMsg = "<strong>Needs Refinement:</strong> Avoid punitive measures like firing staff. A master portfolio strategy requires synthesizing EQ, I/O psychology, and ethical leadership.";
+            }
+
+            feedbackEl.innerHTML = feedbackMsg;
+
+            // Trigger Voice Feedback from AI Agent
+            speakText(grammarScore >= 75 ? "Outstanding portfolio synthesis! You integrated all Unit 3 concepts into an executive strategy." : "Analysis complete. Try incorporating holistic integration and ethical leadership terms.");
+        }
+    </script>
+</body>
+</html>
